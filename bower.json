@@ -1,8 +1,17 @@
 {
   "name": "frock",
   "version": "0.0.1",
+  "authors": [
+    { "name": "Tony Tamplin", "email": "tonytamps@gmail.com"," homepage": "tonytamplin.com" }
+  ],
   "main": [
     "./frock.js"
+  ],
+  "ignore": [
+    ".gitignore",
+    "bower.json",
+    "LICENSE",
+    "README.md"
   ],
   "dependencies": {
     "FakeXMLHttpRequest": "*",
