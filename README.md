@@ -52,7 +52,7 @@ test('can create new user', function() {
 });
 ```
 
-The mock response can be a function to be executed that generates the response. It's okay to return object, they'll be stringified.
+The mock response can be a function to be executed that generates the response. It's okay to return an object, it'll be stringified.
 
 ```
 // ...setup...
