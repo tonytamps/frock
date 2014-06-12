@@ -1,0 +1,11 @@
+{
+  "name": "frock",
+  "version": "0.0.1",
+  "main": [
+    "./frock.js"
+  ],
+  "dependencies": {
+    "FakeXMLHttpRequest": "*",
+    "fakehr": "*"
+  }
+}
