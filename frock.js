@@ -12,8 +12,7 @@ var frock = {
   },
 
   mock: function add(verb, url, body, status) {
-    if (typeof body === 'function') body = body();
-    if (typeof body !== 'string') body = JSON.stringify(body);
+    if(typeof body !== 'string' && typeof body !== 'function') { body = JSON.stringify(body); }
 
     var newItem = { verb: verb, url: url, body: body, status: status };
 
@@ -40,7 +39,13 @@ var frock = {
 
       var found = fakehr.match(queuedItem.verb.toUpperCase(), queuedItem.url);
 
-      if (found) found.respond(queuedItem.status || 200, {'content-type': 'application/json'}, queuedItem.body);
+      if (found) {
+        if (typeof queuedItem.body === 'function') {
+          var obj = JSON.parse(found.requestBody);
+          queuedItem.body = JSON.stringify(queuedItem.body(obj));
+        }
+        found.respond(queuedItem.status || 200, {'content-type': 'application/json'}, queuedItem.body);
+      }
     }
   }
 };
