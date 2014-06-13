@@ -7,6 +7,21 @@ var frock = {
   },
 
   off: function off(){
+    var unhandled = fakehr.requests.filter(req => req.readyState !== FakeXMLHttpRequest.DONE);
+    if (unhandled.length > 0) {
+      var err = new Error('Unhandled requests');
+      err.requests = unhandled;
+      unhandled.forEach(req => {
+        err.message = "%@\n%@ %@".fmt(err.message, req.method, req.url);
+        if (req.requestBody) {
+          err.message = "%@\n\t%@".fmt(err.message, req.requestBody);
+        }
+      });
+
+      console.error(err);
+      throw err;
+    }
+
     fakehr.reset();
     frock.clear();
   },
