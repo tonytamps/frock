@@ -1,12 +1,13 @@
 frock
 =====
 
-An HTTP request mocking helper
+An HTTP request mocking helper.
 
 ## Usage
 
 ### Include the dependencies
 ```
+<!-- Remember, order matters. -->
 <script src="bower_components/FakeXMLHttpRequest/fake_xml_http_request.js"></script>
 <script src="bower_components/fakehr/fakehr.js"></script>
 <script src="bower_components/frock/frock.js"></script>
@@ -52,18 +53,18 @@ test('can create new user', function() {
 });
 ```
 
-The mock response can be a function to be executed that generates the response. It's okay to return an object, it'll be stringified.
+The `mockResponse` can be a `function` to be executed that generates the response. If a function is provided, the `requestBody` will be passed in. It's okay to return an object, it'll be stringified.
 
 ```
 // ...setup...
 test('can get user', function() {
-  var whoRules = function(){ 
-    return { tony: "rules" };
+  var mockResponse = function(requestBody){ 
+    return { deleted_id: requestBody.id };
   }
   
-  frock.mock('get', '/api/users', whoRules);
+  frock.mock('delete', '/api/user', mockResponse);
   
-  visit('/users');
+  visit('/user/1/delete');
   andThen(() => {
     // ...Make your assertions...
   });
