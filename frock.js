@@ -1,5 +1,5 @@
 var frock = {
-  responseQueue: Ember.A(),
+  responseQueue: [],
   checkQueueInterval: null,
 
   on: function on(){
@@ -43,7 +43,7 @@ var frock = {
   },
 
   clear: function clear() {
-    frock.responseQueue = Ember.A();
+    frock.responseQueue = [];
     window.clearInterval(frock.checkQueueInterval);
     frock.checkQueueInterval = null;
   },
