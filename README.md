@@ -1,7 +1,7 @@
 frock
 =====
 
-An Ember HTTP request mocking helper
+An HTTP request mocking helper
 
 ## Usage
 
